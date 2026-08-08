@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "51124680871",
+    "project_id": "ufc-logistics",
+    "storage_bucket": "ufc-logistics.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51124680871:android:fe9426e16141434f5bc382",
+        "android_client_info": {
+          "package_name": "sa.com.ufc.logistics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0jjZB9ZIGUj0MMh8MVDHPFCWlUwj10dg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
