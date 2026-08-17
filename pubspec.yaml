@@ -2,7 +2,7 @@ name: ufc_delivery_app
 description: "A new Flutter project."
 publish_to: "none"
 
-version: 1.0.20+31
+version: 1.0.21+32
 
 environment:
   sdk: ^3.5.4
