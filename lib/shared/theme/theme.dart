@@ -30,7 +30,7 @@ class AppTheme {
       ),
     ),
     colorScheme: ColorScheme.fromSeed(seedColor: whiteColor),
-    bottomAppBarTheme: const BottomAppBarTheme(
+    bottomAppBarTheme: const BottomAppBarThemeData(
       color: whiteColor,
       surfaceTintColor: whiteColor,
     ),
@@ -50,7 +50,7 @@ class AppTheme {
     ),
     canvasColor: blackColor,
     colorScheme: ColorScheme.fromSeed(seedColor: blackColor),
-    bottomAppBarTheme: const BottomAppBarTheme(
+    bottomAppBarTheme: const BottomAppBarThemeData(
       color: blackColor,
       surfaceTintColor: blackColor,
       shadowColor: whiteColor,

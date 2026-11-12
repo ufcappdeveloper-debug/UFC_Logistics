@@ -2,10 +2,11 @@ name: ufc_delivery_app
 description: "A new Flutter project."
 publish_to: "none"
 
-version: 1.0.21+32
+version: 1.0.22+33
 
 environment:
   sdk: ^3.5.4
+  flutter: '>=3.44.3'
 
 dependencies:
   flutter:
@@ -53,6 +54,8 @@ flutter_launcher_icons:
   adaptive_icon_foreground: "assets/images/app_icon.png"
 
 flutter:
+  config:
+    enable-swift-package-manager: false
   uses-material-design: true
   assets:
     - assets/icons/tabbar/

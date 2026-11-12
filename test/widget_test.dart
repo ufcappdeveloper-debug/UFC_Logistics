@@ -1,30 +1,53 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:ufc_delivery_app/main.dart';
+import 'package:ufc_delivery_app/components/app_viewport.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget( MyApp());
+  Future<void> pumpViewport(
+      WidgetTester tester, TargetPlatform platform, EdgeInsets insets) async {
+    debugDefaultTargetPlatformOverride = platform;
+    await tester.pumpWidget(MaterialApp(
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          padding: insets,
+          viewPadding: insets,
+        ),
+        child: AppViewport(child: child!),
+      ),
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Orders')),
+        bottomNavigationBar: const SizedBox(
+          key: Key('bottom-controls'),
+          height: 64,
+        ),
+      ),
+    ));
+    debugDefaultTargetPlatformOverride = null;
+  }
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('Android bottom controls avoid system navigation',
+      (tester) async {
+    await pumpViewport(tester, TargetPlatform.android,
+        const EdgeInsets.only(top: 24, bottom: 48));
+    final controls = tester.getRect(find.byKey(const Key('bottom-controls')));
+    expect(controls.bottom, 600 - 48);
+    expect(tester.getSize(find.byType(AppBar)).height, kToolbarHeight + 24);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('Android landscape controls avoid side navigation',
+      (tester) async {
+    await pumpViewport(tester, TargetPlatform.android,
+        const EdgeInsets.only(left: 24, right: 48));
+    final controls = tester.getRect(find.byKey(const Key('bottom-controls')));
+    expect(controls.left, 24);
+    expect(controls.right, 800 - 48);
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('iOS keeps its existing viewport behavior', (tester) async {
+    await pumpViewport(
+        tester, TargetPlatform.iOS, const EdgeInsets.only(top: 44, bottom: 34));
+    final controls = tester.getRect(find.byKey(const Key('bottom-controls')));
+    expect(controls.bottom, 600);
   });
 }

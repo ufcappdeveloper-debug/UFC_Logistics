@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ufc_delivery_app/components/app_viewport.dart';
 import 'package:ufc_delivery_app/config/config.dart';
 import 'package:ufc_delivery_app/config/init_firebase.dart';
 import 'package:ufc_delivery_app/generated/codegen_loader.g.dart';
@@ -75,6 +76,7 @@ class MyApp extends ConsumerWidget {
       supportedLocales: context.supportedLocales,
       darkTheme: AppTheme.dark,
       themeMode: theme == AppTheme.dark ? ThemeMode.dark : ThemeMode.light,
+      builder: (context, child) => AppViewport(child: child!),
       home: Scaffold(
         body: SignInPage(),
       ),
