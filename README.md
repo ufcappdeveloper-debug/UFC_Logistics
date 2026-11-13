@@ -2,11 +2,12 @@
 
 Flutter mobile app for Android and iOS (`sa.com.ufc.logistics`).
 
-## Release 1.0.22 (33)
+## Release 1.0.23 (34)
 
 - Flutter 3.44.3, pinned in `.fvmrc`.
 - Android: compile/target API 36, minimum Android 7 (API 24).
 - iOS: minimum iOS 15, built with the installed Xcode 27.2 SDK.
+- iOS scene lifecycle support fixes the launch crash on iOS 27.2.
 - Android controls respect bottom and landscape system navigation insets.
 
 ## Build and verify
